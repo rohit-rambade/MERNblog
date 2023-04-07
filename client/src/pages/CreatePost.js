@@ -11,6 +11,11 @@ export default function CreatePost() {
   const [files, setFiles] = useState("");
   const [redirect, setRedirect] = useState(false);
   async function createNewPost(ev) {
+    ev.preventDefault();
+    if (!files || !files[0]) {
+      alert("Please select a file.");
+      return;
+    }
     const data = new FormData();
     data.set("title", title);
     data.set("summary", summary);

@@ -11,7 +11,7 @@ export default function IndexPage() {
     });
   }, []);
   return (
-    <div className="flex flex-col  bg-white  ">
+    <div className="flex flex-col   ">
       {posts.length > 0 ? (
         posts.map((post) => (
           <div className="w-full" key={post.id}>
@@ -19,9 +19,7 @@ export default function IndexPage() {
           </div>
         ))
       ) : (
-        <>
-          <div class="flex flex-col justify-center items-center h-screen  bg-no-post bg-no-repeat bg-center"></div>
-        </>
+        <div class="flex flex-col justify-center items-center h-screen bg-contain bg-center bg-no-post bg-no-repeat bg-center"></div>
       )}
     </div>
   );
