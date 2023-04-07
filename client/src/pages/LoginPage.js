@@ -29,19 +29,21 @@ export default function LoginPage() {
     return <Navigate to={"/"} />;
   }
   return (
-    <div className="container flex justify-center flex-col mt-10 font-Poppins sm:w-3/4 lg:w-1/2">
+    <div className="container  flex justify-center flex-col mt-10 font-Poppins sm:w-3/4 lg:w-1/2">
       <form
-        className="flex flex-col w-full gap-y-2 border p-4 rounded-lg"
+        className="flex flex-col w-full gap-y-8 border p-4 rounded-lg"
         onSubmit={login}
       >
         <h1 className="text-center text-2xl">Login</h1>
         <input
+          className="p-2"
           type="text"
           placeholder="username"
           value={username}
           onChange={(ev) => setUsername(ev.target.value)}
         />
         <input
+          className="p-2"
           type="password"
           placeholder="password"
           value={password}

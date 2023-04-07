@@ -15,7 +15,7 @@ export default function Post({
   const THRESHOLD = 200;
 
   return (
-    <div className="bg-white  text-white dark:bg-gray-900 rounded-3xl font-Poppins p-6 border-b border-dotted border-white m-2">
+    <div className="bg-white  text-white dark:bg-gray-900  font-Poppins p-6 border-b border-dotted border-white ">
       <div className="flex flex-col gap-y-4">
         <div className="text-left">
           <Link to={`/post/${_id}`}>

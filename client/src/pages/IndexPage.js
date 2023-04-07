@@ -11,7 +11,7 @@ export default function IndexPage() {
     });
   }, []);
   return (
-    <div className="flex flex-col px-6 bg-white  ">
+    <div className="flex flex-col  bg-white  ">
       {posts.length > 0 ? (
         posts.map((post) => (
           <div className="w-full" key={post.id}>
