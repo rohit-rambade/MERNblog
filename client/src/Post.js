@@ -23,10 +23,10 @@ export default function Post({
           </Link>
         </div>
 
-        <div>
+        <div className="flex-col sm:flex">
           {summary.length > THRESHOLD && !showFullText ? (
             <>
-              <p className="sm:w-2/3">{summary.slice(0, THRESHOLD)}...</p>
+              <p className="flex">{summary.slice(0, THRESHOLD)}...</p>
               <button
                 className="inline-flex items-center py-2 space-x-2 text-sm sm:text-base text-blue-900"
                 onClick={() => setShowFullText(true)}
@@ -47,9 +47,19 @@ export default function Post({
               )}
             </>
           )}
+          <div className="ml-auto">
+            <Link to={`/post/${_id}`}>
+              <img
+                className="w-48"
+                src={"http://localhost:4000/" + cover}
+                alt=""
+              />
+            </Link>
+          </div>
         </div>
 
         <div className="gap-x-4">
+          <img src={cover} alt="" />
           <p className="flex flex-col text-sm sm:text-base">
             <a className="author">
               <i className="fa-solid fa-user"></i> {author.username}
