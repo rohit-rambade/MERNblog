@@ -20,10 +20,10 @@ export default function PostPage() {
 
   return (
     <div>
-      <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 ">
-        <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
-          <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
-            <div class="mb-4 lg:mb-6 not-format">
+      <main className="pt-8 pb-16 lg:pt-16 lg:pb-24 ">
+        <div className="flex justify-between px-4 mx-auto max-w-screen-xl ">
+          <article className="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
+            <div className="mb-4 lg:mb-6 not-format">
               <div>
                 {userInfo.id === postInfo.author._id && (
                   <div>
@@ -46,17 +46,17 @@ export default function PostPage() {
                   </div>
                 )}
               </div>
-              <div class="flex items-center mb-6 not-italic">
-                <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
+              <div className="flex items-center mb-6 not-italic">
+                <div className="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                   <div>
-                    <h1 class="text-xl font-bold text-gray-900 ">
+                    <h1 className="text-xl font-bold text-gray-900 ">
                       {postInfo.title}
                     </h1>
-                    <p class="text-base font-light text-gray-500 dark:text-gray-400">
+                    <p className="text-base font-light text-gray-500 dark:text-gray-400">
                       by @{postInfo.author.username}
                     </p>
 
-                    <p class="text-base font-light text-gray-500 dark:text-gray-400">
+                    <p className="text-base font-light text-gray-500 dark:text-gray-400">
                       <time>{formatISO9075(new Date(postInfo.createdAt))}</time>
                     </p>
                   </div>
