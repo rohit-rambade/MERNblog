@@ -19,10 +19,9 @@ export default function IndexPage() {
           </div>
         ))
       ) : (
-        <div class="flex flex-col justify-center items-center h-screen">
-          <img class="mx-auto w-14" src={emoji} alt="" />
-          <h1 class="font-Poppins text-3xl">No Post Yet</h1>
-        </div>
+        <>
+          <div class="flex flex-col justify-center items-center h-screen  bg-no-post bg-no-repeat bg-center"></div>
+        </>
       )}
     </div>
   );

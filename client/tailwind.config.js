@@ -17,6 +17,10 @@ module.exports = {
         Poppins: ["Poppins"],
         Roboto: ["Roboto"],
       },
+      backgroundImage: {
+        "no-post": "url('./images/no-connection.gif')",
+        "footer-texture": "url('/img/footer-texture.png')",
+      },
     },
   },
   plugins: [],
