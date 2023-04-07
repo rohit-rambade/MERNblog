@@ -20,7 +20,7 @@ export default function PostPage() {
 
   return (
     <div>
-      <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 bg-white ">
+      <main class="pt-8 pb-16 lg:pt-16 lg:pb-24 ">
         <div class="flex justify-between px-4 mx-auto max-w-screen-xl ">
           <article class="mx-auto w-full max-w-2xl format format-sm sm:format-base lg:format-lg format-blue dark:format-invert">
             <div class="mb-4 lg:mb-6 not-format">
@@ -49,7 +49,7 @@ export default function PostPage() {
               <div class="flex items-center mb-6 not-italic">
                 <div class="inline-flex items-center mr-3 text-sm text-gray-900 dark:text-white">
                   <div>
-                    <h1 class="text-xl font-bold text-gray-900 dark:text-white">
+                    <h1 class="text-xl font-bold text-gray-900 ">
                       {postInfo.title}
                     </h1>
                     <p class="text-base font-light text-gray-500 dark:text-gray-400">
@@ -70,7 +70,7 @@ export default function PostPage() {
             </div>
 
             <div
-              className="mb-4 text-3xl font-extrabold leading-tight text-gray-900 lg:mb-6 lg:text-4xl "
+              className="mb-4  leading-tight text-gray-900 lg:mb-6  "
               dangerouslySetInnerHTML={{ __html: postInfo.content }}
             />
           </article>
