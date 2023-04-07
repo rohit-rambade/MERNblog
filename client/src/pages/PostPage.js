@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { formatISO9075 } from "date-fns";
 import { UserContext } from "../UserContext";
 import { Link } from "react-router-dom";
@@ -8,14 +8,23 @@ export default function PostPage() {
   const [postInfo, setPostInfo] = useState(null);
   const { userInfo } = useContext(UserContext);
   const { id } = useParams();
+  const [isAuthor, setIsAuthor] = useState(false);
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(`http://localhost:4000/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
         setPostInfo(postInfo);
       });
     });
-  }, [id]);
-
+  }, [id, userInfo]);
+  const handleDelete = () => {
+    fetch(`http://localhost:4000/post/${id}`, {
+      method: "DELETE",
+      credentials: "include",
+    }).then(() => {
+      navigate("/");
+    });
+  };
   if (!postInfo) return "";
 
   return (
@@ -43,6 +52,20 @@ export default function PostPage() {
                         />
                       </svg>
                     </Link>
+                    {isAuthor && (
+                      <button
+                        onClick={handleDelete}
+                        className="bg-red-500 text-white px-4 py-2"
+                      >
+                        Delete Post
+                      </button>
+                    )}
+                    <button
+                      onClick={handleDelete}
+                      className="bg-red-500 text-white px-4 py-2"
+                    >
+                      Delete Post
+                    </button>
                   </div>
                 )}
               </div>
