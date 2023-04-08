@@ -10,6 +10,7 @@ export default function PostPage() {
   const { id } = useParams();
   const [isAuthor, setIsAuthor] = useState(false);
   const navigate = useNavigate();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
   useEffect(() => {
     fetch(`http://localhost:4000/post/${id}`).then((response) => {
       response.json().then((postInfo) => {
@@ -93,13 +94,13 @@ export default function PostPage() {
                       </Link>
                       {isAuthor && (
                         <button
-                          onClick={handleDelete}
+                          onClick={() => setIsPopupOpen(true)}
                           className="bg-red-500 text-white px-4 py-2"
                         >
                           Delete Post
                         </button>
                       )}
-                      <button onClick={handleDelete}>
+                      <button onClick={() => setIsPopupOpen(true)}>
                         <svg
                           className=" w-8 sm:w-10 hover:fill-red-500"
                           xmlns="http://www.w3.org/2000/svg"
@@ -110,6 +111,65 @@ export default function PostPage() {
                           <path d="M 13.599609 4 C 8.8620649 4 5 7.8620649 5 12.599609 L 5 30.599609 L 5 31.400391 L 5 38.400391 C 5 43.137935 8.8620649 47 13.599609 47 L 36.400391 47 C 41.137935 47 45 43.137935 45 38.400391 L 45 31.400391 L 45 30.599609 L 45 12.599609 C 45 7.8620649 41.137935 4 36.400391 4 L 13.599609 4 z M 13.599609 6 L 36.400391 6 C 40.056846 6 43 8.9431546 43 12.599609 L 43 30.599609 L 43 31.400391 C 43 35.056846 40.056846 38 36.400391 38 L 13.599609 38 C 9.9431546 38 7 35.056846 7 31.400391 L 7 30.599609 L 7 12.599609 C 7 8.9431546 9.9431546 6 13.599609 6 z M 33.458984 16.365234 L 33.458984 26.734375 L 35.154297 26.734375 L 35.154297 16.365234 L 33.458984 16.365234 z M 14.960938 16.871094 L 14.960938 26.736328 L 18.658203 26.736328 C 21.612203 26.736328 23.300781 24.924766 23.300781 21.759766 C 23.300781 18.662766 21.591203 16.871094 18.658203 16.871094 L 14.960938 16.871094 z M 16.724609 18.394531 L 18.427734 18.394531 C 20.361734 18.394531 21.503906 19.632156 21.503906 21.785156 C 21.503906 23.986156 20.389734 25.210938 18.427734 25.210938 L 16.724609 25.210938 L 16.724609 18.394531 z M 28.277344 19.105469 C 26.110344 19.105469 24.763672 20.617437 24.763672 23.023438 C 24.763672 25.429438 26.090016 26.884766 28.291016 26.884766 C 30.054016 26.884766 31.292281 26.037734 31.613281 24.677734 L 30.007812 24.677734 C 29.761813 25.230734 29.180844 25.537109 28.339844 25.537109 C 27.225844 25.537109 26.507797 24.759625 26.466797 23.515625 L 26.466797 23.425781 L 31.689453 23.425781 L 31.689453 22.878906 C 31.689453 20.520906 30.410344 19.105469 28.277344 19.105469 z M 28.271484 20.453125 C 29.290484 20.453125 29.960141 21.164484 29.994141 22.271484 L 26.472656 22.271484 C 26.547656 21.177484 27.259484 20.453125 28.271484 20.453125 z M 7 36.902344 C 8.5794631 38.792759 10.952573 40 13.599609 40 L 36.400391 40 C 39.047427 40 41.420537 38.792759 43 36.902344 L 43 38.400391 C 43 42.056846 40.056846 45 36.400391 45 L 13.599609 45 C 9.9431546 45 7 42.056846 7 38.400391 L 7 36.902344 z"></path>
                         </svg>
                       </button>
+                      {isPopupOpen && (
+                        <div className="fixed z-10 inset-0 overflow-y-auto">
+                          <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                            <div className="fixed inset-0 transition-opacity">
+                              <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                            </div>
+                            <span
+                              className="hidden sm:inline-block sm:align-middle sm:h-screen"
+                              aria-hidden="true"
+                            >
+                              &#8203;
+                            </span>
+                            <div
+                              className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6"
+                              role="dialog"
+                              aria-modal="true"
+                              aria-labelledby="modal-headline"
+                            >
+                              <div>
+                                <div className="mt-3 text-center sm:mt-5">
+                                  <h3
+                                    className="text-lg leading-6 font-medium text-gray-900"
+                                    id="modal-headline"
+                                  >
+                                    Delete Post
+                                  </h3>
+                                  <div className="mt-2">
+                                    <p className="text-sm leading-5 text-gray-500">
+                                      Are you sure you want to delete this post?
+                                      This action cannot be undone.
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                              <div className="mt-5 sm:mt-6">
+                                <span className="flex w-full rounded-md shadow-sm">
+                                  <button
+                                    onClick={() => setIsPopupOpen(false)}
+                                    type="button"
+                                    className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-gray-300 text-base leading-6 font-medium text-gray-700 hover:bg-gray-200 focus:outline-none focus:border-blue-700 focus:shadow-outline-blue transition ease-in-out duration-150 sm:text-sm sm:leading-5 mr-2"
+                                  >
+                                    Cancel
+                                  </button>
+                                  <button
+                                    onClick={() => {
+                                      setIsPopupOpen(false);
+                                      handleDelete();
+                                    }}
+                                    type="button"
+                                    className="inline-flex justify-center w-full rounded-md border border-transparent px-4 py-2 bg-red-600 text-base leading-6 font-medium text-white hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red transition ease-in-out duration-150 sm:text-sm sm:leading-5"
+                                  >
+                                    Delete
+                                  </button>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
                 </div>

@@ -29,7 +29,7 @@ export default function Header() {
     <header className="flex flex-wrap items-center font-Poppins justify-between px-4 py-3 bg-black shadow-sm shadow-slate-300">
       <div className="flex items-center">
         <Link to="/" className="font-Poppins text-white font-semibold text-lg">
-          The Mouse and Keyboard
+          Syntax Stories
         </Link>
       </div>
       <button className="flex items-center px-3 py-2 text-white rounded md:hidden focus:outline-none focus:shadow-outline">
