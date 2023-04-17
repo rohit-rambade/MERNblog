@@ -10,7 +10,7 @@ const cookieParser = require("cookie-parser");
 const multer = require("multer");
 const uploadMiddleware = multer({ dest: "uploads/" });
 const fs = require("fs");
-
+require("dotenv").config();
 const salt = bcrypt.genSaltSync(10);
 const secret = "asdfe45we45w345wegw345werjktjwertkj";
 
@@ -18,10 +18,17 @@ app.use(cors({ credentials: true, origin: "http://localhost:3000" }));
 app.use(express.json());
 app.use(cookieParser());
 app.use("/uploads", express.static(__dirname + "/uploads"));
-
-mongoose.connect(
-  "mongodb+srv://rohitrambade18:lAVYQIMcBUMWFFQl@cluster0.voi3eya.mongodb.net/test"
-);
+const mongoUser = process.env.MONGO_USER;
+const mongoPassword = process.env.MONGO_PASSWORD;
+const mongoCluster = process.env.MONGO_CLUSTER;
+const mongoDatabase = process.env.MONGO_DATABASE;
+mongoose
+  .connect(
+    `mongodb+srv://${mongoUser}:${mongoPassword}@${mongoCluster}/${mongoDatabase}`,
+    { useNewUrlParser: true }
+  )
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log(err));
 
 app.post("/register", async (req, res) => {
   const { username, password } = req.body;
