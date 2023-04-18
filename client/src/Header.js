@@ -5,6 +5,12 @@ import { UserContext } from "./UserContext";
 export default function Header() {
   const { setUserInfo, userInfo } = useContext(UserContext);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  function handleToggle() {
+    setIsMenuOpen(!isMenuOpen);
+  }
   useEffect(() => {
     fetch("http://localhost:4000/profile", {
       credentials: "include",
@@ -32,9 +38,13 @@ export default function Header() {
           Syntax Stories
         </Link>
       </div>
-      <button className="flex items-center px-3 py-2 text-white rounded md:hidden focus:outline-none focus:shadow-outline">
+
+      <button
+        className="flex items-center px-3 py-2 text-white rounded md:hidden focus:outline-none focus:shadow-outline"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+      >
         <svg
-          className="h-4 w-4 fill-current"
+          cclassName={`h-6 w-6 ${isMenuOpen ? "hidden" : "block"}`}
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
         >
@@ -42,7 +52,11 @@ export default function Header() {
           <path d="M0 3h20v2H0zm0 6h20v2H0zm0 6h20v2H0z" />
         </svg>
       </button>
-      <nav className="flex flex-col md:flex-row md:items-center md:justify-center w-full md:w-auto hidden md:block">
+      <nav
+        className={`flex flex-col md:flex-row md:items-center md:justify-center w-full md:w-auto ${
+          isMenuOpen ? "block" : "hidden"
+        } md:block`}
+      >
         {username && (
           <>
             <Link
